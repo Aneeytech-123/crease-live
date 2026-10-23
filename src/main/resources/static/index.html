@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crease Live · Real-time Cricket Scores</title>
+  <meta name="description" content="Live cricket scores, ball-by-ball commentary, scorecards and player stats.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect x="9" y="4" width="3" height="24" rx="1.2"/><rect x="14.5" y="4" width="3" height="24" rx="1.2"/><rect x="20" y="4" width="3" height="24" rx="1.2"/>
+      <rect x="8" y="2.5" width="16" height="2.2" rx="1.1" class="bail"/>
+    </svg>
+    <span>Crease<b>Live</b></span>
+  </div>
+  <div class="ticker" id="ticker" aria-live="polite"></div>
+  <div class="conn" id="conn"><span class="dot"></span><span class="txt">Connecting…</span></div>
+</header>
+
+<div class="layout">
+  <aside class="matches-pane">
+    <div class="filters" role="tablist" id="filters">
+      <button data-f="ALL" class="on">All</button>
+      <button data-f="LIVE">Live</button>
+      <button data-f="UPCOMING">Upcoming</button>
+      <button data-f="COMPLETED">Results</button>
+    </div>
+    <div class="match-list" id="matchList"></div>
+  </aside>
+
+  <main class="main-pane" id="main">
+    <section class="hero" id="hero">
+      <div class="skeleton">Loading matches…</div>
+    </section>
+
+    <nav class="tabs" id="tabs">
+      <button data-tab="live" class="on">Commentary</button>
+      <button data-tab="scorecard">Scorecard</button>
+      <button data-tab="charts">Charts</button>
+      <button data-tab="summary">Summary</button>
+      <button data-tab="scorer">Scorer</button>
+    </nav>
+
+    <section class="tab-panel" id="tab-live"></section>
+    <section class="tab-panel" id="tab-scorecard" hidden></section>
+    <section class="tab-panel" id="tab-charts" hidden></section>
+    <section class="tab-panel" id="tab-summary" hidden></section>
+    <section class="tab-panel" id="tab-scorer" hidden></section>
+  </main>
+
+  <aside class="side-pane">
+    <div class="card">
+      <div class="card-head">
+        <h3>Leaderboard</h3>
+        <div class="seg" id="lbSeg">
+          <button data-t="runs" class="on">Runs</button>
+          <button data-t="wickets">Wkts</button>
+          <button data-t="sixes">6s</button>
+        </div>
+      </div>
+      <ol class="leaders" id="leaders"></ol>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>Platform</h3></div>
+      <div class="kpis" id="kpis"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>New fixture</h3></div>
+      <form class="fixture-form" id="fixtureForm">
+        <select name="teamAId" required aria-label="Home team"></select>
+        <span class="vs">vs</span>
+        <select name="teamBId" required aria-label="Away team"></select>
+        <select name="overs" aria-label="Format">
+          <option value="5">5 overs</option><option value="10">T10</option>
+          <option value="20" selected>T20</option><option value="50">ODI</option>
+        </select>
+        <button type="submit">Schedule · starts in 10s</button>
+      </form>
+    </div>
+  </aside>
+</div>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="js/app.js"></script>
+</body>
+</html>

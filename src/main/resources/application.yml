@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/css,application/javascript
+
+spring:
+  application:
+    name: crease-live
+
+cricket:
+  simulation:
+    enabled: true
+    tick-millis: 2500          # one simulation tick every 2.5 s
+    ball-probability: 0.85     # chance each live match bowls a ball per tick
+    auto-replenish: true       # keep the platform busy with new fixtures
+    min-active-matches: 3
+    default-overs: 20
+    start-delay-seconds: 45
+    seed-demo-data: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  level:
+    com.crease.live: INFO
